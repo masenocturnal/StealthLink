@@ -1,0 +1,41 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Test</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <script>
+    var worker;
+    console.log('here');
+    if (typeof(Worker) !== "undefined") {
+        console.log("workers supported")
+
+        if(typeof(w) == "undefined") {
+            worker = new Worker("./worker.js");
+
+            worker.onmessage = function(event) {
+                console.log("message")
+                if (event.data == 'stop') {
+                    console.log("Stop")
+                    worker.terminate();
+                } else {
+                    console.log(event.data)
+                }
+
+            };
+        }
+    } else {
+        console.log("no web worker support")
+    }
+
+  </script>
+  
+</head>
+
+<body>
+  <h1>Demo</h1>
+  <p>Foo bar</p>
+</body>
+</html>
